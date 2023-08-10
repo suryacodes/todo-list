@@ -3,13 +3,12 @@ import { Button, Row } from "react-bootstrap";
 import TodoModal from "./modal";
 import TodoCard from "./TodoCard";
 import { useTodoContext } from "../context";
+import useModal from "../hooks/modal";
 
 const TodoList = () => {
-  const [modal, setModal] = useState(false);
+  const { modal, toggle } = useModal(false);
 
   const { todoList } = useTodoContext();
-
-  const toggle = () => setModal(!modal);
 
   return (
     <div style={{ backgroundColor: "#F6F7F8", height: "100%" }}>
@@ -22,11 +21,11 @@ const TodoList = () => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          position: "relative"
+          position: "relative",
         }}
       >
         <h4>TodoList</h4>
-        <Button onClick={() => setModal(!modal)} size="md">
+        <Button onClick={() => toggle()} size="md">
           Create
         </Button>
       </div>

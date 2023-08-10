@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { useTodoContext } from "../context";
-import uuid from "react-uuid";
 
 function TodoModal(props) {
   const { addTodo, onUpdateTodo, getTodoId } = useTodoContext();
@@ -9,7 +8,7 @@ function TodoModal(props) {
   const initialTask = {
     id: props.todo?.id || "",
     name: props.todo?.name || "",
-    description: props.todo?.description || ""
+    description: props.todo?.description || "",
   };
 
   const [task, setTask] = useState(initialTask);
@@ -17,14 +16,14 @@ function TodoModal(props) {
   const handleChange = (e) => {
     setTask((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const onSubmit = () => {
     const updatedTask = {
       ...task,
-      id: task.id || getTodoId()
+      id: task.id || getTodoId(),
     };
 
     task.id ? onUpdateTodo(updatedTask) : addTodo(updatedTask);

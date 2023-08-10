@@ -3,36 +3,35 @@ import { Col, Card } from "react-bootstrap";
 import { FaTrashAlt, FaRegEdit } from "react-icons/fa";
 import { useTodoContext } from "../context";
 import TodoModal from "./modal";
+import useModal from "../hooks/modal";
 
 const colors = [
   {
     primaryColor: "#5D93E1",
-    secondaryColor: "#ECF3FC"
+    secondaryColor: "#ECF3FC",
   },
   {
     primaryColor: "#F9D288",
-    secondaryColor: "#FEFAF1"
+    secondaryColor: "#FEFAF1",
   },
   {
     primaryColor: "#5DC250",
-    secondaryColor: "#F2FAF1"
+    secondaryColor: "#F2FAF1",
   },
   {
     primaryColor: "#F48687",
-    secondaryColor: "#FDF1F1"
+    secondaryColor: "#FDF1F1",
   },
   {
     primaryColor: "#B964F7",
-    secondaryColor: "#F3F0FD"
-  }
+    secondaryColor: "#F3F0FD",
+  },
 ];
 
 const TodoCard = ({ name, description, index, id, onUpdate }) => {
   const { onDeleteTodo } = useTodoContext();
 
-  const [modal, setModal] = useState(false);
-
-  const toggle = () => setModal(!modal);
+  const { modal, toggle } = useModal(false);
 
   return (
     <>
@@ -40,12 +39,12 @@ const TodoCard = ({ name, description, index, id, onUpdate }) => {
         <Card
           style={{
             borderTop: `5px solid ${colors[index % 5].primaryColor}`,
-            boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px"
+            boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px",
           }}
         >
           <Card.Body
             style={{
-              textAlign: "start"
+              textAlign: "start",
             }}
           >
             <Card.Title
@@ -53,7 +52,7 @@ const TodoCard = ({ name, description, index, id, onUpdate }) => {
                 display: "inline",
                 padding: "2px 10px",
                 borderRadius: "8px",
-                backgroundColor: colors[index % 5].secondaryColor
+                backgroundColor: colors[index % 5].secondaryColor,
               }}
             >
               {name}
@@ -63,7 +62,7 @@ const TodoCard = ({ name, description, index, id, onUpdate }) => {
           </Card.Body>
           <Card.Footer
             style={{
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
             <FaRegEdit
